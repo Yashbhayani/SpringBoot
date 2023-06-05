@@ -3,6 +3,7 @@ package com.example.demo.Controller;
 import com.example.demo.Service.StudentService;
 import com.example.demo.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,9 +15,10 @@ public class StudentController {
     @Autowired
     StudentService studentService;
     @GetMapping("")
-    public String index(){
-        return "Yash";
+    public String index(@RequestHeader (value="token") String user){
+        return user;
     }
+
 
     @GetMapping("/show")
     public List<Student> getStudent(){
